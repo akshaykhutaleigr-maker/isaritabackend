@@ -1,0 +1,42 @@
+model District {
+  district_id               Int       @id @default(autoincrement())
+  district_name_en          String?   @db.VarChar(255)
+  user_id                   Int?
+  created                   DateTime? 
+  req_ip                    String?   @db.VarChar(100)
+  state_id                  Int?
+  id                        Int?      @default(autoincrement())
+  district_name_ll          String?   @db.VarChar(255)
+  census_code               String?   @db.VarChar(50)
+  district_name_ll1         String?   @db.VarChar(255)
+  district_name_ll2         String?   @db.VarChar(255)
+  district_name_ll3         String?   @db.VarChar(255)
+  district_name_ll4         String?   @db.VarChar(255)
+  updated                   DateTime?
+  division_id               Float?
+  old_census_code           String?   @db.VarChar(50)
+  census_code_changedate    DateTime?
+  district_code             Float?
+  new_record                String?   @db.VarChar(100)
+  c_district_code           Float?
+  efiling_flag              String    @default("N") @db.Char(1)
+  isarita_district_id       Int?
+  district_code_ll          Int?
+  display_flag              String?   @default("Y") @db.Char(1)
+  isarita_district_code     Int?
+  census_code_2001          String?   @db.VarChar(50)
+  lr_code                   String?   @db.VarChar(50)
+  census_code_2021          String?   @db.VarChar(50)
+  dv_remarks                String?   @db.VarChar(1000)
+  isarita_1point9_code      Float?
+  valuation_1point9_code    Float?
+  valuation_2point0_code    Float?
+  LGD_Code                  Int?
+  lgd_code                  Float?
+  census_code_2011          String?   @db.VarChar(50)
+  district_name_old_en      String?   @db.VarChar(255)
+  district_name_old_ll      String?   @db.VarChar(255)
+  old_name_used_upto_date   DateTime?
+
+  @@map("ngdrstab_conf_admblock3_district")
+}

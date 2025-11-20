@@ -42,20 +42,68 @@ app.post('/register', async (req, res) => {
   }
 });
 
-app.get('/users', async (req, res) => {
+app.get('/getDistrict', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM ngdrstab_mst_user'); 
-    res.json(result.rows);
+   const districts = await prisma.District.findMany({
+      select: {
+        district_id: true,
+        district_name_en: true
+      }
+    });
+     res.json(serializeBigInt(districts));
+
   } catch (err) {
-    console.error('Database query error:', err);
-    res.status(500).send('Server error');
+    console.error('Error fetching users:', err);
+    res.status(500).json({ error: 'Server error' });
   }
+});
+
+app.get('/getTalukaByID/:districtId',async (req,res)=>{
+try {
+   const districtId =  Number(req.params.districtId);
+     const talukas = await prisma.Taluka.findMany({
+    
+     where:{
+      district_id:districtId
+     },
+      select: {
+        taluka_id: true,
+        taluka_name_en: true,
+        district_id:true
+      }
+    });
+      res.json(serializeBigInt(talukas));
+} catch (error) {
+   console.error('Error fetching talukas:', error);
+    res.status(500).json({ error: 'Server error' });
+}
+});
+
+app.get('/getVillageByID/:talukaId',async (req,res)=>{
+try {
+   const talukaId =  Number(req.params.talukaId);
+     const villages = await prisma.VillageMapping.findMany({
+     where:{
+      taluka_id:talukaId
+     },
+      select: {
+        village_id: true,
+        village_name_en: true,
+        taluka_id:true
+      }
+    });
+      res.json(serializeBigInt(villages));
+} catch (error) {
+   console.error('Error fetching villages:', error);
+    res.status(500).json({ error: 'Server error' });
+}
 });
 
 app.get('/Getusers', async (req, res) => {
   try {
     const users = await prisma.citizenRegistration.findMany();
-    res.json(users);
+     res.json(serializeBigInt(users));
+
   } catch (err) {
     console.error('Error fetching users:', err);
     res.status(500).json({ error: 'Server error' });

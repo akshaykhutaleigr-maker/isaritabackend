@@ -1,0 +1,49 @@
+model Taluka {
+  taluka_id               BigInt    @id @default(autoincrement())
+  user_id                 Int?
+  state_id                Int?
+  district_id             Float?
+  taluka_name_ll          String?   @db.VarChar(100)
+  taluka_name_ll1         String?   @db.VarChar(100)
+  taluka_name_ll2         String?   @db.VarChar(100)
+  taluka_name_ll3         String?   @db.VarChar(100)
+  taluka_name_ll4         String?   @db.VarChar(100)
+  taluka_name_en          String?   @db.VarChar(100)
+  created                 DateTime?
+  req_ip                  String?   @db.VarChar(100)
+  developed_land_types_id Int?
+  taluka_id_old           Int?
+  id                      BigInt?   @default(autoincrement())
+  updated                 DateTime?
+  district_id_old         Float?
+  new_record              String?   @db.VarChar(100)
+  census_code             String?   @db.VarChar(50)
+  old_census_code         String?   @db.VarChar(50)
+  census_code_changedate  DateTime?
+  district_code           Float?
+  map_taluka_code         Float?
+  subdivision_id          BigInt?
+  dsro_code               String?   @db.VarChar(100)
+  c_taluka_code           Float?
+  taluka_code             Float?
+  taluka_code_ll          Int?
+  block_code              String?   @db.VarChar(100)
+  isarita_district_code   Float?
+  isarita_taluka_code     Float?
+  census_code_2001        String?   @db.VarChar(50)
+  lr_code                 String?   @db.VarChar(50)
+  census_code_2021        String?   @db.VarChar(50)
+  esar_taluka_code        Float?
+  dv_remarks              String?   @db.VarChar(1000)
+  isarita_1point9_code    Float?
+  valuation_1point9_code  Float?
+  valuation_2point0_code  Float?
+  lgd_code                Float?
+  census_code_2011        String?   @db.VarChar(50)
+  taluka_name_old_en      String?   @db.VarChar(255)
+  taluka_name_old_ll      String?   @db.VarChar(255)
+  old_name_used_upto_date DateTime?
+  display_flag            String?   @db.Char(1)
+
+  @@map("ngdrstab_conf_admblock5_taluka")
+}

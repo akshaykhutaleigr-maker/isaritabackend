@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prisma:merge": "node scripts/mergePrismaSimple.js",
+    "prisma:generate": "npm run prisma:merge && npx prisma generate --schema=prisma/schema.generated.prisma",
+    "prisma:push": "npm run prisma:merge && npx prisma db push --schema=prisma/schema.generated.prisma"
   },
   "keywords": [],
   "author": "",
@@ -20,10 +22,5 @@
     "nodemon": "^3.1.9",
     "pg": "^8.16.3",
     "prisma": "^6.19.0"
-  },
-  "scripts": {
-  "prisma:merge": "node scripts/mergePrismaSimple.js",
-  "prisma:generate": "npm run prisma:merge && npx prisma generate --schema=prisma/schema.generated.prisma",
-  "prisma:push": "npm run prisma:merge && npx prisma db push --schema=prisma/schema.generated.prisma"
-}
+  }
 }

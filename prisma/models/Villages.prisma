@@ -1,0 +1,99 @@
+model VillageMapping {
+  village_id                   BigInt      @id @default(autoincrement())
+  state_id                     Int?
+  division_id                  Int?
+  district_id                  Int?
+  subdivision_id               Int?
+  circle_id                     Int?
+  village_name_en              String?     @db.VarChar(255)
+  is_corporatiion              Boolean?
+  ulb_type_id                  Float?
+  village_merge_id             Float?
+  id                           BigInt?     @default(autoincrement())
+  village_name_ll              String?     @db.VarChar(255)
+  census_code                  String?     @db.VarChar(50)
+  corp_id                      Int?
+  developed_land_types_id      Int?
+  village_name_ll1             String?     @db.VarChar(100)
+  village_name_ll2             String?     @db.VarChar(255)
+  village_name_ll3             String?     @db.VarChar(255)
+  village_name_ll4             String?     @db.VarChar(100)
+  req_ip                       String?     @db.VarChar(100)
+  created                      DateTime?
+  user_id                      Int?
+  taluka_id                    Int?
+  vibhag_no_old                Int?
+  taluka_id_old                Int?
+  village_id_old               Int?
+  valutation_zone_id           Int?
+  updated                      DateTime?
+  dist_id_old                  Int?
+  new_record                   String?     @db.VarChar(100)
+  old_census_code              String?     @db.VarChar(50)
+  census_code_changedate       DateTime?
+  from_finyear_id              Int?
+  to_finyear_id                Int?
+  pin_code                     String?     @db.VarChar(100)
+  sr_no                        Float?
+  hadbast_no                   String?     @db.VarChar(100)
+  master_district_code         Float?
+  master_taluka_code           Float?
+  master_village_code          Float?
+  thana_no                     String?     @db.VarChar(100)
+  word_no                      String?     @db.VarChar(100)
+  census_code_2011             String?     @db.VarChar(50)
+  state_spacific_code           String?     @db.VarChar(100)
+  jh_taluka_code               String?     @db.Char(3)
+  village_live_id              Int?
+  actual_village_id            String?     @db.VarChar(100)
+  live_village_id              String?     @db.VarChar(100)
+  prohibition_attribute1_flag  String?     @default("N") @db.Char(1)
+  prohibition_attribute2_flag  String?     @default("N") @db.Char(1)
+  pr_censuscode                String?     @db.VarChar(18)
+  prcard_mumbai_divcode        String?
+  map_taluka_code              Float?
+  map_village_code             Float?
+  metro_applicable             String?     @default("N") @db.VarChar(1)
+  localtax_applicable          String?     @default("Y") @db.VarChar(1)
+  isarita_district_code        Float?
+  isarita_taluka_code          Float?
+  isarita_census_code          String?     @db.VarChar(100)
+  village_lr_flag              String?     @default("N") @db.Char(1)
+  district_code                Float?
+  taluka_code                  Float?
+  village_code                 Float?
+  mauja_code                   String?     @db.VarChar(100)
+  halka_code                   String?     @db.VarChar(100)
+  circle_code                  String?     @db.VarChar(100)
+  dist_code_ll                 String?     @db.VarChar(100)
+  mauja_id                     String?     @db.VarChar(100)
+  district_code_lll            String?     @db.VarChar(100)
+  sub_dist_code                String?     @db.VarChar(100)
+  block_code                   String?     @db.VarChar(100)
+  village_code_lll             String?     @db.VarChar(100)
+  transfer_flag                String?     @default("N") @db.Char(1)
+  matched_flag                 String?     @default("N") @db.Char(1)
+  update_flag                  String?     @default("N") @db.Char(1)
+  village_shift                String?     @db.VarChar(50)
+  display_flag                 String?     @default("Y") @db.Char(1)
+  is_present_isarita           String?     @default("N") @db.Char(1)
+  village_pr_flag              String?     @default("N") @db.Char(1)
+  census_code_2001             String?     @db.VarChar(50)
+  lr_code                      String?     @db.VarChar(50)
+  census_code_2021             String?     @db.VarChar(50)
+  esar_dist_code               Float?
+  esar_taluka_code             Float?
+  esar_village_code            Float?
+  railwaytax_applicable        String?     @default("N") @db.Char(1)
+  bpms_census_code             String?     @db.VarChar(100)
+  dv_remarks                   String?     @db.VarChar(1000)
+  isarita_1point9_code         Float?
+  valuation_1point9_code       Float?
+  lgd_code                     Float?
+  valuation_2point0_code       String?     @db.VarChar(100)
+  village_name_old_en          String?     @db.VarChar(255)
+  village_name_old_ll          String?     @db.VarChar(255)
+  old_name_used_upto_date      DateTime?
+
+  @@map("ngdrstab_conf_admblock7_village_mapping")
+}
