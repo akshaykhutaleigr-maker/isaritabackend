@@ -1,0 +1,83 @@
+model CitizenRegistration {
+  reg_id              BigInt   @id @default(autoincrement())
+  contact_fname       String?  @db.VarChar(100)
+  contact_mname       String?  @db.VarChar(100)
+  contact_lname       String?  @db.VarChar(100)
+  emp_type            Int?
+  org_name            String?  @db.VarChar(255)
+  building            String?  @db.VarChar(100)
+  street              String?  @db.VarChar(100)
+  city                String?  @db.VarChar(100)
+  pincode             String?  @db.VarChar(6)
+  state_id            Int?
+  division_id         Int?
+  district_id         Int?
+  taluka_id           Int?
+  email_id            String?  @db.VarChar(100)
+  mobile_no           String?  @db.VarChar(12)
+  id_type             Int?
+  pan_no              String?  @db.VarChar(255)
+  user_name           String?  @db.VarChar(50)
+  user_pass           String?  @db.VarChar(250)
+  hint_question       Int?
+  hint_answer         String?  @db.VarChar(255)
+  req_ip              String?  @db.VarChar(100)
+  user_created_flag   String?  @default("N") @db.Char(1)
+  user_creation_date  DateTime? @db.Date
+  user_id             Int?
+
+  gen_flag            Int?     @default(0)
+  req_time_hr         Int?
+  req_time_min        Int?
+  approval_remark     String?  @db.VarChar(255)
+  rejection_flag      String   @default("N") @db.Char(1)
+  rejection_date      DateTime? @db.Date
+  auth_letter_flag    String?  @default("N") @db.Char(1)
+  letter_received_dt  DateTime? @db.Date
+  whetherindia        String?  @db.VarChar(5)
+  regfor              String?  @db.VarChar(25)
+  hod_name            String?  @db.VarChar(250)
+  hod_email           String?  @db.VarChar(250)
+  hod_phone           String?  @db.VarChar(250)
+  hod_signedfile      String?  @db.VarChar(250)
+  hash_code           String?  @db.VarChar(255)
+  hash_code_flag      String?  @default("N") @db.Char(1)
+  uploaded_sign_file  String?  @db.VarChar(250)
+  fileupload_ip       String?
+  fileupload_dt       DateTime?  @db.Time
+  created             DateTime?
+  updated             DateTime?
+  user_type           String?  @default("C") @db.Char(1)
+  uid                 String?  @db.VarChar(255)
+  deed_writer         String    @default("N") @db.Char(1)
+  address             String?   @db.VarChar(500)
+  test1               String     @default("N") @db.Char(1)
+  test2               String?    @db.VarChar(10)
+  office_id           Decimal?
+  is_advocate         String    @default("N") @db.Char(1)
+  licence_no          String?   @db.VarChar(50)
+  name_of_bar         String?   @db.VarChar(255)
+  contact_person_name String?   @db.VarChar(250)
+  firmdetails         String?   @db.VarChar(255)
+  authperson          String?   @db.VarChar(255)
+  is_builder          String    @default("N") @db.Char(1)
+  is_bank             String    @default("N") @db.Char(1)
+  is_company          String    @default("N") @db.Char(1)
+  buildername         String?   @db.VarChar(100)
+  builderadd          String?   @db.VarChar(100)
+  bankname            String?   @db.VarChar(100)
+  bankadd             String?   @db.VarChar(100)
+  ifsc                String?   @db.VarChar(50)
+  new_record          String?   @db.VarChar(100)
+  reraid              String?   @db.VarChar(100)
+  othstateaddress     String?   @db.VarChar(500)
+  cidco_citizen_flag  String    @default("N") @db.Char(1)
+  contract_number     String?   @db.VarChar(15)
+  is_mhada            String    @default("N") @db.Char(1)
+  tan_no              String?   @db.VarChar(50)
+  country_id          Decimal?
+  party_category_id   Decimal?
+  dv_remarks          String?   @db.VarChar(1000)
+
+  @@map("ngdrstab_trn_usercitizen_registartion")
+}

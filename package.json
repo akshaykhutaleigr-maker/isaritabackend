@@ -11,6 +11,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@mrleebo/prisma-ast": "^0.13.1",
     "@prisma/client": "^6.19.0",
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
@@ -19,5 +20,10 @@
     "nodemon": "^3.1.9",
     "pg": "^8.16.3",
     "prisma": "^6.19.0"
-  }
+  },
+  "scripts": {
+  "prisma:merge": "node scripts/mergePrismaSimple.js",
+  "prisma:generate": "npm run prisma:merge && npx prisma generate --schema=prisma/schema.generated.prisma",
+  "prisma:push": "npm run prisma:merge && npx prisma db push --schema=prisma/schema.generated.prisma"
+}
 }
