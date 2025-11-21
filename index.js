@@ -23,15 +23,25 @@ function serializeBigInt(obj) {
 }
 app.post('/register', async (req, res) => {
   try {
+
+    const emailExists = await prisma.citizenRegistration.findFirst({
+      where: { email_id: req.body.email_id }
+    });
+     if (emailExists) {
+      return res.status(400).json({ error: "Email already exists" });
+    }
+    const usernameExists = await prisma.citizenRegistration.findFirst({
+      where: {user_name: req.body.user_name }
+    });
+
+    if (usernameExists) {
+      return res.status(400).json({ error: "Username already exists" });
+    }
+
     const newUser = await prisma.citizenRegistration.create({
-      data: {
-       
-        contact_fname: req.body.contact_fname,
-        contact_lname: req.body.contact_lname,
-        email_id: req.body.email_id,
-        user_name: req.body.user_name,
-        user_pass: req.body.user_pass
-      }
+    
+     data: req.body
+ 
     });
 
   res.json(serializeBigInt(newUser));
@@ -41,6 +51,74 @@ app.post('/register', async (req, res) => {
     res.status(500).send("Server error");
   }
 });
+
+app.get('/CheckUsername', async (req, res) => {
+  try {
+    const { user_name } = req.query; 
+
+    if (!user_name) {
+      return res.status(400).json({ error: 'Username is required' });
+    }
+
+     const usernameExists = await prisma.citizenRegistration.findFirst({
+      where: {user_name: req.body.user_name }
+    });
+
+   if(usernameExists) {
+      return res.status(400).json({ error: "Username already exists" });
+    }
+    res.json({ message: 'Username is available' });
+
+  } catch (err) {
+    console.error('Error fetching users:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+app.get('/CheckMobileNo', async (req, res) => {
+  try {
+    const { mobile_no } = req.query; 
+
+    if (!mobile_no) {
+      return res.status(400).json({ error: 'Mobile No is required' });
+    }
+
+     const mobNoExists = await prisma.citizenRegistration.findFirst({
+      where: {mobile_no:mobile_no.toString() }
+    });
+
+   if(mobNoExists) {
+      return res.status(400).json({ error: "Mobile No already exists" });
+    }
+    res.json({ message: 'Mobile is available' });
+
+  } catch (err) {
+    console.error('Error fetching users:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+app.get('/CheckEmail', async (req, res) => {
+  try {
+    const { email_id } = req.query; 
+
+    if (!email_id) {
+      return res.status(400).json({ error: 'EmailID No is required' });
+    }
+
+     const EmailIDExists = await prisma.citizenRegistration.findFirst({
+      where: {email_id:email_id.toString() }
+    });
+
+   if(EmailIDExists) {
+      return res.status(400).json({ error: "EmailId  already exists" });
+    }
+    res.json({ message: 'EmailId  is available' });
+
+  } catch (err) {
+    console.error('Error fetching users:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
+
 
 app.get('/getDistrict', async (req, res) => {
   try {
