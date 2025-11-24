@@ -4,7 +4,7 @@ const router = express.Router();
 const { prisma, serializeBigInt } = require("../common");
 
 // Check username Exist
-router.get('/CheckUsername', async (req, res) => {
+router.post('/CheckUsername', async (req, res) => {
   try {
     const { user_name } = req.query;
     if (!user_name) return res.status(400).json({ error: 'Username is required' });
@@ -23,7 +23,7 @@ router.get('/CheckUsername', async (req, res) => {
 });
 
 // Check mobile Exist
-router.get('/CheckMobileNo', async (req, res) => {
+router.post('/CheckMobileNo', async (req, res) => {
   try {
     const { mobile_no } = req.query;
     if (!mobile_no) return res.status(400).json({ error: 'Mobile No is required' });
@@ -42,7 +42,7 @@ router.get('/CheckMobileNo', async (req, res) => {
 });
 
 // Check email Exist
-router.get('/CheckEmail', async (req, res) => {
+router.post('/CheckEmail', async (req, res) => {
   try {
     const { email_id } = req.query;
     if (!email_id) return res.status(400).json({ error: 'EmailID is required' });

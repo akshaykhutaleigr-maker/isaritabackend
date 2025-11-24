@@ -4,7 +4,7 @@ const { prisma, serializeBigInt } = require("../common");
 
 router.post('/register', async (req, res) => {
   try {
-    const { email_id, user_name, password, mobile_no } = req.body;
+    // const { email_id, user_name, password, mobile_no } = req.body;
 
     // Validate required fields
     if (!email_id || !user_name || !password) {
@@ -13,7 +13,7 @@ router.post('/register', async (req, res) => {
 
     // Check if email exists
     const emailExists = await prisma.citizenRegistration.findFirst({
-      where: { email_id }
+      where: { email_id:req.body.email_id }
     });
     if (emailExists) {
       return res.status(400).json({ error: "Email already exists" });
@@ -21,7 +21,7 @@ router.post('/register', async (req, res) => {
 
     // Check if username exists
     const usernameExists = await prisma.citizenRegistration.findFirst({
-      where: { user_name }
+      where: { user_name:req.body.user_name }
     });
     if (usernameExists) {
       return res.status(400).json({ error: "Username already exists" });
@@ -29,7 +29,7 @@ router.post('/register', async (req, res) => {
 
     // Create new user
     const newUser = await prisma.citizenRegistration.create({
-      data: { email_id, user_name, password, mobile_no }
+      data: req.body
     });
 
     res.json(serializeBigInt(newUser));
@@ -39,5 +39,14 @@ router.post('/register', async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
+router.post('/Getusers', async (req, res) => {
+  try {
+    const users = await prisma.citizenRegistration.findMany();
+     res.json(serializeBigInt(users));
 
+  } catch (err) {
+    console.error('Error fetching users:', err);
+    res.status(500).json({ error: 'Server error' });
+  }
+});
 module.exports = router;

@@ -3,7 +3,7 @@ const express = require('express');
 const router = express.Router();
 const { prisma, serializeBigInt } =  require("../common");
 
-router.get('/getDistrict', async (req, res) => {
+router.post('/getDistrict', async (req, res) => {
   try {
     const districts = await prisma.District.findMany({
       select: { district_id: true, district_name_en: true }
@@ -15,7 +15,7 @@ router.get('/getDistrict', async (req, res) => {
   }
 });
 
-router.get('/getTalukaByID/:districtId', async (req, res) => {
+router.post('/getTalukaByID/:districtId', async (req, res) => {
   try {
     const districtId = Number(req.params.districtId);
     const talukas = await prisma.Taluka.findMany({
@@ -29,7 +29,7 @@ router.get('/getTalukaByID/:districtId', async (req, res) => {
   }
 });
 
-router.get('/getVillageByID/:talukaId', async (req, res) => {
+router.post('/getVillageByID/:talukaId', async (req, res) => {
   try {
     const talukaId = Number(req.params.talukaId);
     const villages = await prisma.VillageMapping.findMany({
