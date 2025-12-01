@@ -1,0 +1,24 @@
+model Menu {
+  id            BigInt       @id @default(autoincrement())
+  name_en       String?   @db.VarChar(255)
+  controller    String?   @db.VarChar(255)
+  action        String?   @db.VarChar(255)
+  created       DateTime? @db.Timestamp(6)
+  modified      DateTime? @db.Date
+  user_id       Int?
+  name_ll       String?   @db.VarChar(255)
+  name_ll1      String?   @db.VarChar(150)
+  name_ll2      String?   @db.VarChar(150)
+  name_ll3      String?   @db.VarChar(150)
+  name_ll4      String?   @db.VarChar(150)
+  req_ip        String?   @db.VarChar(100)
+  state_id      Decimal? 
+  display_order Int?
+  updated       DateTime? @db.Timestamp(6)
+  dv_remarks    String?   @db.VarChar(1000)
+
+  submenus      SubMenu[]
+  permissions UserPermissions[] @relation("MenuPermissions")
+
+  @@map("ngdrstab_mst_menu")
+}

@@ -1,0 +1,26 @@
+model SubMenu {
+  id            BigInt        @id @default(autoincrement())
+  main_menu_id  BigInt?
+  name_en       String?   @db.VarChar(255)
+  controller    String?   @db.VarChar(255)
+  action        String?   @db.VarChar(255)
+  created       DateTime? @db.Timestamp(6)
+  modified      DateTime? @db.Date
+  user_id       Int?
+  display_order Decimal?  
+  name_ll       String?   @db.VarChar(255)
+  name_ll1      String?   @db.VarChar(255)
+  name_ll2      String?   @db.VarChar(255)
+  name_ll3      String?   @db.VarChar(255)
+  name_ll4      String?   @db.VarChar(255)
+  req_ip        String?   @db.VarChar(100)
+  updated       DateTime? @db.Timestamp(6)
+  state_id      Decimal? 
+  dv_remarks    String?   @db.VarChar(1000)
+
+  Menu  Menu? @relation(fields: [main_menu_id], references: [id])
+    subsubmenus  SubSubMenu[]
+ permissions UserPermissions[] @relation("SubmenuPermissions")
+
+  @@map("ngdrstab_mst_submenu")
+}

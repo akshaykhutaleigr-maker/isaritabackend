@@ -1,0 +1,23 @@
+model UserPermissions {
+  id             BigInt       @id @default(autoincrement())
+  role_id        Int?
+  controller     String?   @db.VarChar(255)
+  action         String?   @db.VarChar(255)
+  created        DateTime? @db.Timestamp(6)
+  modified       DateTime? @db.Date
+  user_id        Int?
+  req_ip         String?   @db.VarChar(100)
+  state_id       Decimal?  
+  updated        DateTime? @db.Timestamp(6)
+  menu_id        BigInt?
+  submenu_id     BigInt?
+  subsubmenu_id  BigInt?
+  dv_remarks     String?   @db.VarChar(1000)
+
+  // Relations ------------------------------
+   Menu       Menu?   @relation("MenuPermissions", fields: [menu_id], references: [id])
+   SubMenu    SubMenu? @relation("SubmenuPermissions", fields: [submenu_id], references: [id])
+   subsubmenu   SubSubMenu? @relation("SubSubmenuPermissions", fields: [subsubmenu_id], references: [id])
+
+  @@map("ngdrstab_mst_userpermissions")
+}
